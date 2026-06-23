@@ -9,6 +9,7 @@ Read more here:
 
 Repo layout:
 
+```text
 dev-plan-skill/
 ├─ README.md
 ├─ dev-plan/
@@ -18,3 +19,4 @@ dev-plan-skill/
 └─ examples/
    ├─ default_plan.md       # Arm A output (Claude /plan mode)
    └─ dev-plan_terminal_agent.md  # Arm B output (proposed /dev-plan mode)
+```
