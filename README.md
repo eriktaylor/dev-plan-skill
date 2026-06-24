@@ -4,7 +4,7 @@
 
 ![Development Plan Skill Chart](dev-plan_skill_image.jpg)
 
-`/dev-plan` turns a one-off planning request into a plan that lives in your repo and survives across sessions: work split into tracks, scored and ranked, dependencies drawn as plain-text arrows, status tracked with glyphs. Same shape every time — so you stop spending your planning budget rearranging Claude's output. The skill holds the scaffold; you keep the thinking.
+`/dev-plan` turns a one-off planning request into a plan that lives in your repo and survives across sessions: work split into tracks, scored and ranked, dependencies drawn as plain-text arrows, status tracked with glyphs. The skill holds the scaffold; you keep the thinking.
 
 ## Install
 
