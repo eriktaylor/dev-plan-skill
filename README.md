@@ -46,7 +46,7 @@ Wave 2 — usable LOCAL MVP (no Claude required):
   F-3 ──→ V-1 (dropdown)
   S-1 ──→ V-4 (confirm-before-run) ──→ F-1
 
-Critical path:  T-1 → F-2 → F-3 → F-4 → F-5
+Critical path:  T-1 → F-2 → F-3
 ```
 
 ## Simple or complex
