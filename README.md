@@ -6,6 +6,11 @@
 
 `/dev-plan` turns a complex coding request into a structured development plan that survives across sessions: classified tracks, priority ranking, dependencies drawn, status tracked with glyphs. The skill holds the scaffold, provides a structured progress reference, and is ideal with human-in-the-loop oversight.
 
+## Read about the skill
+
+The story, the design decisions, and the head-to-head test against Claude Code's Plan Mode are in the [Medium article](https://medium.com/@erikntaylor/making-better-development-plans-into-a-skill-for-claude-code-093db647b404). The two plans in `examples/` are the real outputs from that test.
+
+
 ## Install
 
 Clone the repository to get started:
@@ -45,6 +50,12 @@ claude
 
 The skill routes on one decision. A **simple** plan is a short, sequential change — goal, steps, done-when. A **complex** plan — interdependent tracks, anything that touches production — gets the full format above, loaded from `references/complex-plan.md` only when it's needed.
 
+A simple plan is ordered by priority:
+
+```
+Priority = Impact ÷ Difficulty        (qualitative)
+```
+
 Status is a single glyph per item, flipped in place:
 
 ```
@@ -55,19 +66,7 @@ Status is a single glyph per item, flipped in place:
 ·   not started
 ```
 
-A simple plan is ordered by priority:
-
-```
-Priority = Impact ÷ Difficulty        (qualitative)
-```
-
 ## What a complex plan looks like
-
-Additional plan layers that stay structured, such as:
-*Classification
-*Phase diagram
-*Implementation order
-*Production safety
 
 A complex plan uses linear weighting system to score and rank plan items, decided at the outset:
 
@@ -96,6 +95,12 @@ Wave 2 — usable LOCAL MVP (no Claude required):
   S-1 ──→ V-4 (confirm-before-run) ──→ F-1
 ```
 
+A complex plan is further structured via:
+*Classification - tracks are classified
+*Phase diagram - grouped waves (shown above)
+*Implementation order - scored and ranked by score
+*Production safety - always consider what touches the main path
+
 ## Repo layout
 
 ```text
@@ -110,6 +115,3 @@ dev-plan-skill/
    └─ dev-plan_terminal_agent.md      # Arm B — /dev-plan skill
 ```
 
-## Learn more
-
-The story, the design decisions, and the head-to-head test against Claude Code's Plan Mode are in the [Medium article](https://medium.com/@erikntaylor/making-better-development-plans-into-a-skill-for-claude-code-093db647b404). The two plans in `examples/` are the real outputs from that test.
