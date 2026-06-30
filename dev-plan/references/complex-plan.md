@@ -1,9 +1,9 @@
 # Complex plan format
 
-Use this when a plan has several interdependent items, parallel tracks, or real
+A plan with interdependent items, parallel tracks, or real
 uncertainty about ordering and payoff. It layers scoring, a dependency diagram,
 and waves on top of the simple format. Everything stays plain-text and
-terminal-readable — the rubric adds structure, not rendering.
+terminal-readable — the rubric adds structure.
 
 ## Document shape
 
@@ -25,7 +25,8 @@ per-item detail last.
    Next steps because both are read each turn and flushed as decisions land.
 
 **Notes (middle)** — the reference the top tier leans on; read for the why.
-8. **Scoring rubric** — how the scores in the table are assigned.
+8. **Scoring rubric** — the weighted score, and the per-plan weights it derives
+   from.
 9. **Production safety** — what a change touches, what can break, and the
    data-safety lines it must not cross.
 10. **Empirical findings** (optional) — directional evidence that steers
@@ -83,14 +84,15 @@ summary is just enough to remember what happened.
 One scored, ranked table — this is both the order of work and the score rollup,
 so there's no separate summary. Suggested columns:
 
-| Wave | Item | Prereqs | Diff. | Imp. | Priority | Touches prod? | Status |
+| Wave | Item | Prereqs | U | C | E | R | Score | Touches prod? | Status |
 
-Add a **Risk** column for infra-heavy plans (see the rubric). The "Touches prod?"
-column earns its place when some items are staging-only and others change live
-behavior — it makes the dangerous rows visible without reading each one. Scores
-live only in this table — the item blocks don't repeat them, so a re-score can't
-drift. Status shows as a glyph in both this table and the phase diagram for quick
-reference; the table's Status cell adds the short note.
+U/C/E/R are the 0–3 ratings; Score is the weighted rollup (see the rubric for the
+weights). The "Touches prod?" column earns its place when some items are
+staging-only and others change live behavior — it makes the dangerous rows visible
+without reading each one. Scores live only in this table — the item blocks don't
+repeat them, so a re-score can't drift. Status shows as a glyph in both this table
+and the phase diagram for quick reference; the table's Status cell adds the short
+note.
 
 ## Next steps
 
@@ -120,35 +122,41 @@ the decision into the affected sections and drop the row.
 
 ## Scoring rubric
 
-How the scores in the table above are assigned.
+How the scores in the table above are assigned — and the weights, set once at plan
+creation, that they derive from.
 
-Default to two axes:
-- **Difficulty** — engineering effort.
-- **Impact** — expected lift to the outcome you care about, or risk reduction
-  for tooling/infra items.
+**The score.** Rate each item 0–3 on four dimensions, then combine:
 
-**Priority = Impact ÷ Difficulty.** High-impact, low-effort items rise to the
-top. It's a sorting heuristic, not a law — call out when an item's real value
-isn't captured by the headline objective (e.g. a config knob whose payoff shows
-up in production, not in an offline score).
+    Score = w_U·U + w_C·C + w_E·E − w_R·R
 
-**Risk as a core axis.** For infra- or production-heavy plans, promote **Risk**
-(blast radius if it goes wrong) to a first-class axis and score Difficulty ·
-Risk · Impact. Use it to break ties and order within a wave — a high-impact,
-high-risk item usually wants to ship alone and early enough to watch. Leave it
-out for feature plans where nothing is load-bearing.
+- **U — user impact** — value visible to the user (features, UX, visualization).
+- **C — core impact** — value to the codebase/infra (tooling, simplification,
+  de-risking, evaluation).
+- **E — ease** — inverse effort (3 = trivial, 0 = a slog).
+- **R — risk** — blast radius if it goes wrong; the only term that subtracts.
 
-**Scale.** Either calibrate 1–5, or use T-shirt sizes when that's faster and
-precision is false comfort: Difficulty S (<1h) / M (hours) / L (>1d); Risk and
-Impact Low / Med / High. Pick one scale per plan and state it in the legend.
+Splitting impact into user-facing (U) and core (C) is what lets one score rank
+across tracks: a tooling item and a feature land on the same scale instead of
+needing separate schemes — most items are strong on one and weak on the other.
+Risk is *in* the score (a risky change must be worth more to rank) and also drives
+sequencing — a risky-but-foundational item still ships early and alone to be
+watched, but that's the dependency graph's job, not the score's.
 
-**Alternative: RICE.** When reach and confidence matter (user-facing features,
-bets with unknown payoff): Priority = (Reach × Impact × Confidence) ÷ Effort.
-Pick one scheme per plan; don't mix item to item.
+**Weights.** Each weight is one of {0.5, 1, 2} — default 1, halve a dimension that
+barely matters for this plan, double one that dominates. Set them *once, from the
+plan's stated goal, before scoring any item* — never tuned afterward to produce a
+desired order. Then freeze them for the life of the plan: re-score individual
+items freely as you learn more, but don't move the weights, or the ranking basis
+shifts under you every turn.
 
-**Optional extra axes** (only if they earn their keep): context availability (how
-much is known vs. must be discovered first); testability (how cheaply it can be
-validated before promotion).
+State the weights and a one-line rationale at the top of this section, e.g.:
+
+    weights: U=2 · C=1 · E=1 · R=2
+    (user-facing milestone, but it touches the payment path — risk double-counted)
+
+That line is what makes frozen, custom weights auditable; without it they look
+arbitrary. If reach and confidence matter for a plan, add them as extra weighted
+0–3 terms rather than switching to a different formula.
 
 Mark items that depend on an earlier item proving value as **Unscheduled** —
 captured to avoid losing them, not committed work.

@@ -8,13 +8,38 @@
 
 ## Install
 
+Clone the repository to get started:
 ```bash
-# personal — available in every project
-cp -r dev-plan ~/.claude/skills/dev-plan
-claude            # then type /dev-plan
+git clone https://github.com/eriktaylor/dev-plan-skill.git
 ```
 
-Or drop `dev-plan/` into a repo's `.claude/skills/` to scope it to that project.
+For a global install, available in every project:
+```bash
+mkdir -p ~/.claude/skills
+cp -r ~/dev-plan-skill/dev-plan ~/.claude/skills/dev-plan
+```
+
+Or scope it to a specific project directory:
+```bash
+mkdir -p .claude/skills
+cp -r ~/dev-plan-skill/dev-plan .claude/skills/dev-plan
+```
+
+The resulting folder layout will look like this:
+```text
+.claude/
+└── skills/
+    └── dev-plan/
+        ├── SKILL.md                  # Router + simple-plan format
+        └── references/
+            └── complex-plan.md       # Full complex format
+```
+
+Now the skill is installed and ready to use. To run it in the CLI:
+```bash
+claude
+# Inside the session, type: /dev-plan
+```
 
 ## What a complex plan looks like
 

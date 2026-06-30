@@ -1,6 +1,6 @@
 ---
 name: dev-plan
-description: Create and maintain structured, terminal-readable development plans that spec, score, and prioritize work into waves. Use this whenever the user wants to plan a feature rollout, sequence a multi-step change, prioritize a backlog, lay out a roadmap, decide what to build next, or track progress on an existing plan — and whenever a planning discussion produces more than a couple of dependent steps. Also use when the user mentions a "plan", "roadmap", "tranche", "wave", "what should I do first", or asks to update the status of work items in a plan file.
+description: Create and maintain structured, terminal-readable development plans that spec, score, and prioritize work into waves. During coding sessions, use this whenever the user wants to plan a feature rollout, sequence a multi-step change, prioritize a backlog, lay out a roadmap, decide what to build next, or track progress on an existing plan — and whenever a planning discussion produces more than a couple of dependent steps.
 argument-hint: [what to plan]
 ---
 
@@ -27,7 +27,7 @@ in the PR/commits, not in the plan prose.
 Pick the shape from the work, and say which in one line:
 
 - **Simple** — one feature or a short, mostly-sequential change. Low uncertainty,
-  few or no parallel tracks. Use the template below; no scoring table.
+  few or no parallel tracks. Use the template below; qualitative scoring table.
 - **Complex** — several interdependent items or parallel tracks, work that spans
   types (tooling, features, eval/testing…), anything that changes production
   behavior, or real uncertainty about ordering and payoff. Read
@@ -45,17 +45,20 @@ Status: ✅ complete · 🔄 in-progress · unmarked = not started
 ## Goal
 <one or two sentences: what changes and why>
 
-## Steps
-1. <first step>
-2. <second step>
-3. <third step>
+## Steps  (ordered by priority — see below)
+1. [H] <high>
+2. [M] <medium>
+3. [L] <low>
 
 ## Done when
 <the observable condition that means this is finished>
 ```
 
-If you find yourself wanting columns, scores, or a dependency diagram, switch to
-the complex format instead of bolting them onto a simple plan.
+Priority is eyeballed: tag each step **H / M / L** as a gut read of impact ÷
+difficulty, and order the sequence, highest at the top.
+
+If you find yourself wanting columns, a real score, or a dependency diagram,
+switch to the complex format.
 
 ## Core behaviors
 
