@@ -4,7 +4,7 @@
 
 ![Development Plan Skill Chart](dev-plan_skill_image.jpg)
 
-`/dev-plan` turns a one-off planning request into a plan that lives in your repo and survives across sessions: work split into tracks, scored and ranked, dependencies drawn as plain-text arrows, status tracked with glyphs. The skill holds the scaffold; you keep the thinking.
+`/dev-plan` turns a complex coding request into a structured development plan that survives across sessions: classified tracks, priority ranking, dependencies drawn, status tracked with glyphs. The skill holds the scaffold, provides a structured progress reference, and is ideal with human-in-the-loop oversight.
 
 ## Install
 
@@ -41,7 +41,9 @@ claude
 # Inside the session, type: /dev-plan
 ```
 
-## What a complex plan looks like
+## Simple or complex
+
+The skill routes on one decision. A **simple** plan is a short, sequential change — goal, steps, done-when. A **complex** plan — interdependent tracks, anything that touches production — gets the full format above, loaded from `references/complex-plan.md` only when it's needed.
 
 Status is a single glyph per item, flipped in place:
 
@@ -53,13 +55,35 @@ Status is a single glyph per item, flipped in place:
 ·   not started
 ```
 
-Every item is scored, and ranked by a simple rule:
+A simple plan is ordered by priority:
 
 ```
-Priority = Impact ÷ Difficulty        (ties broken by Risk)
+Priority = Impact ÷ Difficulty        (qualitative)
 ```
 
-Dependencies are plain text, grouped into waves, with the critical path called out:
+## What a complex plan looks like
+
+Additional plan layers that stay structured, such as:
+*Classification
+*Phase diagram
+*Implementation order
+*Production safety
+
+A complex plan uses linear weighting system to score and rank plan items, decided at the outset:
+
+```
+**The score.** Rate each item 0–3 on four dimensions, then combine:
+
+    Score = w_U·U + w_C·C + w_E·E − w_R·R
+
+- **U — user impact** — value visible to the user (features, UX, visualization).
+- **C — core impact** — value to the codebase/infra (tooling, simplification,
+  de-risking, evaluation).
+- **E — ease** — inverse effort (3 = trivial, 0 = a slog).
+- **R — risk** — blast radius if it goes wrong; the only term that subtracts.
+```
+
+Dependencies are written in plain text, grouped into waves, with the critical path called out:
 
 ```
 Wave 1 — installable local skeleton (MVP):
@@ -71,10 +95,6 @@ Wave 2 — usable LOCAL MVP (no Claude required):
   F-3 ──→ V-1 (dropdown)
   S-1 ──→ V-4 (confirm-before-run) ──→ F-1
 ```
-
-## Simple or complex
-
-The skill routes on one decision. A **simple** plan is a short, sequential change — goal, steps, done-when. A **complex** plan — interdependent tracks, anything that touches production — gets the full format above, loaded from `references/complex-plan.md` only when it's needed.
 
 ## Repo layout
 
