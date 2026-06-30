@@ -50,13 +50,7 @@ claude
 
 The skill routes on one decision. A **simple** plan is a short, sequential change — goal, steps, done-when. A **complex** plan — interdependent tracks, anything that touches production — gets the full format above, loaded from `references/complex-plan.md` only when it's needed.
 
-A simple plan is ordered by priority:
-
-```
-Priority = Impact ÷ Difficulty        (qualitative)
-```
-
-Status is a single glyph per item, flipped in place:
+Both plans track status via glyph vocabulary per item, flipped in place:
 
 ```
 ✅  complete
@@ -64,6 +58,12 @@ Status is a single glyph per item, flipped in place:
 💡  proposed (recommended next)
 ⏸️  deferred (with re-open trigger)
 ·   not started
+```
+
+A simple plan is ordered by priority:
+
+```
+Priority = Impact ÷ Difficulty        (qualitative)
 ```
 
 ## What a complex plan looks like
@@ -96,10 +96,10 @@ Wave 2 — usable LOCAL MVP (no Claude required):
 ```
 
 A complex plan is further structured via:
-*Classification - tracks are classified
-*Phase diagram - grouped waves (shown above)
-*Implementation order - scored and ranked by score
-*Production safety - always consider what touches the main path
+- Classification - tracks are classified
+- Phase diagram - grouped waves (shown above)
+- Implementation order - scored and ranked by score
+- Production safety - always consider what touches the main path
 
 ## Repo layout
 
