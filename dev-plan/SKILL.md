@@ -54,7 +54,7 @@ Status: ✅ complete · 🔄 in-progress · unmarked = not started
 <the observable condition that means this is finished>
 ```
 
-Priority is eyeballed: tag each step **H / M / L** as a gut read of impact ÷
+Tag each step **H / M / L** as an qualitative estimate of impact ÷
 difficulty, and order the sequence, highest at the top.
 
 If you find yourself wanting columns, a real score, or a dependency diagram,

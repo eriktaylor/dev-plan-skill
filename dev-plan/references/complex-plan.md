@@ -43,10 +43,10 @@ the rest earn their place as a plan gets riskier or more contested.
 ## Classification
 
 Decide up front what kinds of work the plan covers, because they roll out and get
-validated differently — tooling, features, visualizations, evaluation/testing,
-infra, docs. Give each track a short ID prefix and tag every item with it (e.g.
-T-1 tooling, F-2 feature, V-1 visualization, E-3 evaluation). The prefixes make
-the phase diagram and the table scannable by track and keep parallel work legible.
+validated differently — tooling, features, visualizations, models, evaluation,
+infra, testing, docs. Give each track a short ID prefix and tag every item with it (e.g.
+T-1 tooling, F-2 feature, V-1 visualization, S — safety, M — modeling, E-3 evaluation). 
+The prefixes make the phase diagram and the table scannable by track and keep parallel work legible.
 
 Call out evaluation/testing explicitly — it's the track most often dropped. An
 eval or test item is real work with its own slot, distinct from the empirical

@@ -96,7 +96,7 @@ Wave 2 — usable LOCAL MVP (no Claude required):
 ```
 
 A complex plan is further structured via:
-- Classification - tracks are classified, e.g. T-1 tooling, V-1 visualization
+- Classification - tracks are classified, e.g. T-1 tooling, V-1 visualization, S-1 safety.
 - Phase diagram - grouped waves (shown above)
 - Implementation order - scored and ranked list
 - Production safety - always consider what touches the main path
